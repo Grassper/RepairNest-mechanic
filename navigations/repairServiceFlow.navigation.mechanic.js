@@ -9,6 +9,7 @@ import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
 
 // importing screens
 import ProposalScreen from "../screens/proposals.screens";
+import ProposalDetail from "../screens/proposalDetails.screen";
 
 const Stack = createStackNavigator();
 
@@ -16,10 +17,11 @@ const RepairServiceMechStackNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTintColor: Colors.accentColor,
+        headerTintColor: Colors.primaryColor,
         headerTitleAlign: "center",
         headerTitleStyle: {
           fontFamily: "Montserrat_600SemiBold",
+          color: Colors.accentColor,
         },
       }}
     >
@@ -30,6 +32,7 @@ const RepairServiceMechStackNavigation = () => {
           title: "Proposals",
         }}
       />
+      <Stack.Screen name="ProposalDetail" component={ProposalDetail} />
     </Stack.Navigator>
   );
 };

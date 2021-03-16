@@ -1,68 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 // import Colors
 import Colors from "../colors/default.colors";
 
 // importing icons
-import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
+// importing component
+import CustomButton from "../components/customButton.component";
+import ProfileContainer from "../components/profileContainer.component";
+import LocationDisplay from "../components/locationDisplay.component";
+
 const ProposalCard = ({
-  navigation,
+  onSelect,
   id,
+  location,
   profileImage,
   profileName,
   proposalType,
   fare,
   distance,
-  location,
 }) => {
+  const [buttonToggle, setbuttonToggle] = useState(true);
+  const buttonCustomSolidStyles = {
+    backgroundColor: Colors.primaryColor,
+    borderWidth: 1,
+    borderColor: Colors.primaryColor,
+    width: "45%",
+  };
+  const buttonCustomOutlineStyles = {
+    backgroundColor: Colors.white,
+    borderWidth: 1,
+    borderColor: Colors.accentColor,
+    width: "45%",
+  };
+  const buttonTitleStyle = {
+    color: Colors.accentColor,
+  };
   return (
-    <TouchableOpacity onPress={() => {}}>
+    <TouchableOpacity
+      onPress={() => {
+        setbuttonToggle(!buttonToggle);
+      }}
+    >
       <View style={Styles.container}>
-        <View style={Styles.profileContainer}>
-          <View style={Styles.profileLeftSection}>
-            <View style={Styles.profilePhotoContainer}>
-              <Image
-                style={Styles.profilePhoto}
-                source={{
-                  uri: profileImage,
+        <ProfileContainer
+          profileImage={profileImage}
+          profileName={profileName}
+          proposalType={proposalType}
+          fare={fare}
+          distance={distance}
+        />
+        <View style={Styles.locationContainer}>
+          <LocationDisplay location={location} />
+          {!buttonToggle ? (
+            <View style={Styles.buttonContainer}>
+              <CustomButton
+                buttonTitle="Cancel"
+                customStyles={buttonCustomOutlineStyles}
+                buttonTitleStyle={buttonTitleStyle}
+                onSelect={() => {
+                  console.log("cancel pressed");
                 }}
               />
-            </View>
-            <View style={Styles.profileContent}>
-              <Text style={Styles.mainText}>{profileName}</Text>
-              <View style={Styles.proposalTypeContainer}>
-                <Text style={Styles.subText}>{proposalType}</Text>
-              </View>
-            </View>
-          </View>
-          <View style={Styles.profileRightSection}>
-            <View style={Styles.fareContainer}>
-              <FontAwesome
-                name="rupee"
-                size={18}
-                style={Styles.icon}
-                color={Colors.black}
+              <CustomButton
+                buttonTitle="Accept"
+                customStyles={buttonCustomSolidStyles}
+                onSelect={onSelect}
               />
-              <Text style={Styles.mainText}>{fare}</Text>
             </View>
-            <Text style={Styles.subText}>{distance}Km</Text>
-          </View>
-        </View>
-        <View style={Styles.locationContainer}>
-          <Text style={Styles.locationTitle}>
-            {"Repair location".toUpperCase()}
-          </Text>
-          <View style={Styles.location}>
-            <Ionicons name="location-sharp" size={24} color={Colors.red} />
-            <View>
-              <Text style={Styles.locationText} numberOfLines={1}>
-                {location ? location.substring(0, 35) : null}...
-              </Text>
-            </View>
-          </View>
+          ) : null}
         </View>
       </View>
     </TouchableOpacity>
@@ -72,6 +80,12 @@ const ProposalCard = ({
 export default ProposalCard;
 
 const Styles = StyleSheet.create({
+  buttonContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 5,
+  },
   container: {
     alignItems: "center",
     elevation: 5,
@@ -79,77 +93,9 @@ const Styles = StyleSheet.create({
     marginBottom: 10,
     width: "100%",
   },
-  fareContainer: {
-    flexDirection: "row",
-  },
-  icon: {
-    marginRight: 5,
-  },
-  location: {
-    alignItems: "flex-end",
-    flexDirection: "row",
-    paddingVertical: 10,
-  },
   locationContainer: {
     backgroundColor: Colors.white,
     padding: 20,
     width: "100%",
-  },
-  locationText: {
-    fontFamily: "Montserrat_600SemiBold",
-    fontSize: 16,
-    paddingLeft: 5,
-  },
-  locationTitle: {
-    fontFamily: "Montserrat_400Regular",
-    fontSize: 10,
-  },
-  mainText: {
-    fontFamily: "Montserrat_600SemiBold",
-    fontSize: 18,
-    lineHeight: 20,
-    marginBottom: 10,
-  },
-  profileContainer: {
-    alignItems: "center",
-    backgroundColor: Colors.profileCardBackgroud,
-    flexDirection: "row",
-    padding: 20,
-    width: "100%",
-  },
-  profileContent: {
-    height: "100%",
-  },
-  profileLeftSection: {
-    alignItems: "center",
-    flexDirection: "row",
-    width: "80%",
-  },
-  profilePhoto: {
-    height: "100%",
-    width: "100%",
-  },
-  profilePhotoContainer: {
-    backgroundColor: Colors.primaryColor,
-    borderRadius: 50,
-    height: 60,
-    marginRight: 15,
-    overflow: "hidden",
-    width: 60,
-  },
-  profileRightSection: {
-    width: "20%",
-  },
-  proposalTypeContainer: {
-    alignItems: "center",
-    backgroundColor: Colors.primaryColor,
-    borderRadius: 50,
-    maxWidth: "50%",
-    minWidth: "50%",
-    paddingVertical: 5,
-  },
-  subText: {
-    fontFamily: "Montserrat_400Regular",
-    fontSize: 14,
   },
 });

@@ -20,7 +20,9 @@ const ProposalScreen = ({ navigation }) => {
       fare={item.fare}
       distance={item.distance}
       location={item.location}
-      navigation
+      onSelect={() => {
+        navigation.navigate("ProposalDetail", { item });
+      }}
     />
   );
   return (

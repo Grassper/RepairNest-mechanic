@@ -9,6 +9,8 @@ export default [
     distance: 2.2,
     location:
       "K.V Apartments, NO.4, 101, Grand Southern Trunk Rd, Chromepet, Chennai, Tamil Nadu 600044",
+    problem:
+      "Lorem ipsum dolor sit amet, consectetur adipisc elit. Nullam ac vestibulum erat. Cras vulputate auctor lectus at consequat.",
   },
   {
     id: "#2",
@@ -20,6 +22,8 @@ export default [
     distance: 2.2,
     location:
       "K.V Apartments, NO.4, 101, Grand Southern Trunk Rd, Chromepet, Chennai, Tamil Nadu 600044",
+    problem:
+      "Lorem ipsum dolor sit amet, consectetur adipisc elit. Nullam ac vestibulum erat. Cras vulputate auctor lectus at consequat.",
   },
   {
     id: "#3",
@@ -31,6 +35,8 @@ export default [
     distance: 2.2,
     location:
       "K.V Apartments, NO.4, 101, Grand Southern Trunk Rd, Chromepet, Chennai, Tamil Nadu 600044",
+    problem:
+      "Lorem ipsum dolor sit amet, consectetur adipisc elit. Nullam ac vestibulum erat. Cras vulputate auctor lectus at consequat.",
   },
   {
     id: "#4",
@@ -42,6 +48,8 @@ export default [
     distance: 2.2,
     location:
       "K.V Apartments, NO.4, 101, Grand Southern Trunk Rd, Chromepet, Chennai, Tamil Nadu 600044",
+    problem:
+      "Lorem ipsum dolor sit amet, consectetur adipisc elit. Nullam ac vestibulum erat. Cras vulputate auctor lectus at consequat.",
   },
   {
     id: "#5",
@@ -53,6 +61,8 @@ export default [
     distance: 2.2,
     location:
       "K.V Apartments, NO.4, 101, Grand Southern Trunk Rd, Chromepet, Chennai, Tamil Nadu 600044",
+    problem:
+      "Lorem ipsum dolor sit amet, consectetur adipisc elit. Nullam ac vestibulum erat. Cras vulputate auctor lectus at consequat.",
   },
   {
     id: "#6",
@@ -64,5 +74,7 @@ export default [
     distance: 2.2,
     location:
       "K.V Apartments, NO.4, 101, Grand Southern Trunk Rd, Chromepet, Chennai, Tamil Nadu 600044",
+    problem:
+      "Lorem ipsum dolor sit amet, consectetur adipisc elit. Nullam ac vestibulum erat. Cras vulputate auctor lectus at consequat.",
   },
 ];
