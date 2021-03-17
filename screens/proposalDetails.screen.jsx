@@ -23,7 +23,12 @@ const ProposalDetail = ({ navigation, route }) => {
           <ProblemContainer problem={item.problem} />
         </View>
       </View>
-      <TouchableOpacity onPress={() => {}} style={Styles.bottomSection}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("ProposalNavigation");
+        }}
+        style={Styles.bottomSection}
+      >
         <Text style={Styles.repairText}>{"GO TO REPAIR".toUpperCase()}</Text>
       </TouchableOpacity>
     </View>

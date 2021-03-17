@@ -10,6 +10,7 @@ import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
 // importing screens
 import ProposalScreen from "../screens/proposals.screens";
 import ProposalDetail from "../screens/proposalDetails.screen";
+import ProposalNavigation from "../screens/proposalNavigation.screen";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,13 @@ const RepairServiceMechStackNavigation = () => {
         }}
       />
       <Stack.Screen name="ProposalDetail" component={ProposalDetail} />
+      <Stack.Screen
+        name="ProposalNavigation"
+        component={ProposalNavigation}
+        options={{
+          title: "online",
+        }}
+      />
     </Stack.Navigator>
   );
 };
