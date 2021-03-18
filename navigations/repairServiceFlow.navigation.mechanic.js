@@ -11,6 +11,7 @@ import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
 import ProposalScreen from "../screens/proposals.screens";
 import ProposalDetail from "../screens/proposalDetails.screen";
 import ProposalNavigation from "../screens/proposalNavigation.screen";
+import CheckingScreen from "../screens/checking.screen";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,18 @@ const RepairServiceMechStackNavigation = () => {
         component={ProposalNavigation}
         options={{
           title: "online",
+        }}
+      />
+      <Stack.Screen
+        name="CheckingScreen"
+        component={CheckingScreen}
+        options={{
+          title: "Checking",
+          headerTintColor: Colors.white,
+          headerStyle: {
+            backgroundColor: Colors.primaryColor,
+            elevation: 0,
+          },
         }}
       />
     </Stack.Navigator>

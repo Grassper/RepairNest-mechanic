@@ -14,8 +14,9 @@ import ProfileContainer from "../components/profileContainer.component";
 import LocationDisplay from "../components/locationDisplay.component";
 import CustomButton from "../components/customButton.component";
 
-const ProposalNavigation = () => {
+const ProposalNavigation = ({ navigation }) => {
   const [startNavigation, setStartNavigation] = useState(false);
+  const [checking, setChecking] = useState(false);
   const {
     id,
     profileImage,
@@ -49,11 +50,15 @@ const ProposalNavigation = () => {
   };
 
   const ArrivedHandler = () => {
-    console.log("ArrivedHandler clicked");
+    setChecking(true);
   };
 
   const NavigationHandler = () => {
     setStartNavigation(true);
+  };
+
+  const CheckingHandler = () => {
+    navigation.navigate("CheckingScreen");
   };
 
   return (
@@ -79,11 +84,19 @@ const ProposalNavigation = () => {
               console.log("cancel pressed");
             }}
           />
-          <CustomButton
-            buttonTitle={startNavigation ? "Arrived" : "Navigate"}
-            customStyles={buttonCustomSolidStyles}
-            onSelect={startNavigation ? ArrivedHandler : NavigationHandler}
-          />
+          {!checking ? (
+            <CustomButton
+              buttonTitle={startNavigation ? "Arrived" : "Navigate"}
+              customStyles={buttonCustomSolidStyles}
+              onSelect={startNavigation ? ArrivedHandler : NavigationHandler}
+            />
+          ) : (
+            <CustomButton
+              buttonTitle={"Check"}
+              customStyles={buttonCustomSolidStyles}
+              onSelect={CheckingHandler}
+            />
+          )}
         </View>
       </View>
     </View>

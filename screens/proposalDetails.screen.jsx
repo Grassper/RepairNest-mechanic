@@ -9,7 +9,6 @@ import ProfileContainer from "../components/profileContainer.component";
 import LocationDisplay from "../components/locationDisplay.component";
 import Divider from "../components/divider.component";
 import ProblemContainer from "../components/problemContainer.component";
-import CustomButton from "../components/customButton.component";
 
 const ProposalDetail = ({ navigation, route }) => {
   const { item } = route.params;
