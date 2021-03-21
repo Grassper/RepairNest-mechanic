@@ -9,7 +9,6 @@ import Divider from "../components/divider.component";
 import CustomButton from "../components/customButton.component";
 
 const CheckingScreen = ({ navigation }) => {
-  const [repairId, setRepairId] = useState("#ID-12345");
   const [problem, setProblem] = useState("");
   const [fare, setFare] = useState("");
   const CustomDividerStyle = {
@@ -32,16 +31,6 @@ const CheckingScreen = ({ navigation }) => {
   const buttonTitleStyle = {
     color: Colors.accentColor,
   };
-
-  const completedHandler = () => {
-    const checkingForm = {
-      repairId,
-      problem,
-      fare,
-    };
-    console.log(checkingForm);
-  };
-
   return (
     <ScrollView contentContainerStyle={Styles.container}>
       <View style={Styles.receiptContainer}>
@@ -51,7 +40,7 @@ const CheckingScreen = ({ navigation }) => {
         <Divider />
         <View style={Styles.receiptItems}>
           <Text style={Styles.itemHeading}>{"Repair ID".toUpperCase()}</Text>
-          <Text style={Styles.itemContent}>{repairId}</Text>
+          <Text style={Styles.itemContent}>#ID-12345</Text>
         </View>
         <Divider customStyles={CustomDividerStyle} />
         <View style={Styles.receiptItems}>
@@ -68,6 +57,9 @@ const CheckingScreen = ({ navigation }) => {
           />
         </View>
         <Divider customStyles={CustomDividerStyle} />
+        <View style={Styles.receiptItems}>
+          <Text style={Styles.itemHeading}>{"Due Date".toUpperCase()}</Text>
+        </View>
         <Divider customStyles={CustomDividerStyle} />
         <View style={Styles.receiptItems}>
           <Text style={Styles.itemHeading}>{"Nominal".toUpperCase()}</Text>
@@ -93,7 +85,9 @@ const CheckingScreen = ({ navigation }) => {
           <CustomButton
             buttonTitle="Checking Completed"
             customStyles={buttonCustomSolidStyles}
-            onSelect={completedHandler}
+            onSelect={() => {
+              console.log("Checking completed clicked");
+            }}
           />
         </View>
       </View>
@@ -113,6 +107,9 @@ const Styles = StyleSheet.create({
     backgroundColor: Colors.primaryColor,
     flexGrow: 1,
     justifyContent: "center",
+  },
+  dataPicker: {
+    width: "100%",
   },
   header: {
     fontFamily: "Montserrat_600SemiBold",
