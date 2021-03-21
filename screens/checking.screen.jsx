@@ -39,7 +39,7 @@ const CheckingScreen = ({ navigation }) => {
       problem,
       fare,
     };
-    console.log(checkingForm);
+    navigation.navigate("Contracts");
   };
 
   return (

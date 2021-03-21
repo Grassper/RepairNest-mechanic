@@ -27,9 +27,11 @@ const ProfileContainer = ({
         </View>
         <View style={Styles.profileContent}>
           <Text style={Styles.mainText}>{profileName}</Text>
-          <View style={Styles.proposalTypeContainer}>
-            <Text style={Styles.subText}>{proposalType}</Text>
-          </View>
+          {proposalType && (
+            <View style={Styles.proposalTypeContainer}>
+              <Text style={Styles.subText}>{proposalType}</Text>
+            </View>
+          )}
         </View>
       </View>
       <View style={Styles.profileRightSection}>

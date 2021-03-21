@@ -9,7 +9,7 @@ import CustomButton from "../components/customButton.component";
 import ProfileContainer from "../components/profileContainer.component";
 import LocationDisplay from "../components/locationDisplay.component";
 
-const ProposalCard = ({
+const ContractCard = ({
   onSelect,
   id,
   location,
@@ -24,16 +24,7 @@ const ProposalCard = ({
     backgroundColor: Colors.primaryColor,
     borderWidth: 1,
     borderColor: Colors.primaryColor,
-    width: "45%",
-  };
-  const buttonCustomOutlineStyles = {
-    backgroundColor: Colors.white,
-    borderWidth: 1,
-    borderColor: Colors.accentColor,
-    width: "45%",
-  };
-  const buttonTitleStyle = {
-    color: Colors.accentColor,
+    width: "100%",
   };
   return (
     <TouchableOpacity
@@ -54,15 +45,7 @@ const ProposalCard = ({
           {!buttonToggle ? (
             <View style={Styles.buttonContainer}>
               <CustomButton
-                buttonTitle="Cancel"
-                customStyles={buttonCustomOutlineStyles}
-                buttonTitleStyle={buttonTitleStyle}
-                onSelect={() => {
-                  console.log("cancel pressed");
-                }}
-              />
-              <CustomButton
-                buttonTitle="Accept"
+                buttonTitle="Mark as completed"
                 customStyles={buttonCustomSolidStyles}
                 onSelect={onSelect}
               />
@@ -74,7 +57,7 @@ const ProposalCard = ({
   );
 };
 
-export default ProposalCard;
+export default ContractCard;
 
 const Styles = StyleSheet.create({
   buttonContainer: {
