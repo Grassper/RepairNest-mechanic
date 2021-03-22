@@ -13,6 +13,7 @@ import ProposalDetail from "../screens/proposalDetails.screen";
 import ProposalNavigation from "../screens/proposalNavigation.screen";
 import CheckingScreen from "../screens/checking.screen";
 import Contracts from "../screens/contracts.screen";
+import HistoryScreen from "../screens/history.screen";
 
 const Stack = createStackNavigator();
 
@@ -60,6 +61,13 @@ const RepairServiceMechStackNavigation = () => {
         component={Contracts}
         options={{
           title: "Contracts",
+        }}
+      />
+      <Stack.Screen
+        name="HistoryScreen"
+        component={HistoryScreen}
+        options={{
+          title: "History",
         }}
       />
     </Stack.Navigator>

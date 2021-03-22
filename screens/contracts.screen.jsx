@@ -20,7 +20,7 @@ const Contracts = ({ navigation }) => {
       fare={item.fare}
       distance={item.distance}
       location={item.location}
-      onSelect={() => console.log("mark as completed")}
+      onSelect={() => navigation.navigate("HistoryScreen")}
     />
   );
   return (
