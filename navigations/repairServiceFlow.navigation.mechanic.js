@@ -14,6 +14,7 @@ import ProposalNavigation from "../screens/proposalNavigation.screen";
 import CheckingScreen from "../screens/checking.screen";
 import Contracts from "../screens/contracts.screen";
 import HistoryScreen from "../screens/history.screen";
+import MyAccount from "../screens/myAccount.screen";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,18 @@ const RepairServiceMechStackNavigation = () => {
         },
       }}
     >
+      <Stack.Screen
+        name="MyAccount"
+        component={MyAccount}
+        options={{
+          title: "Account",
+          headerTintColor: Colors.white,
+          headerStyle: {
+            backgroundColor: Colors.primaryColor,
+            elevation: 0,
+          },
+        }}
+      />
       <Stack.Screen
         name="ProposalScreen"
         component={ProposalScreen}
