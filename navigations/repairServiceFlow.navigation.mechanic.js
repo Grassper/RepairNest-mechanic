@@ -15,6 +15,7 @@ import CheckingScreen from "../screens/checking.screen";
 import Contracts from "../screens/contracts.screen";
 import HistoryScreen from "../screens/history.screen";
 import MyAccount from "../screens/myAccount.screen";
+import Homescreen from "../screens/homescreen.screen";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,13 @@ const RepairServiceMechStackNavigation = () => {
       }}
     >
       <Stack.Screen
+        name="Homescreen"
+        component={Homescreen}
+        options={{
+          title: "Offline",
+        }}
+      />
+      {/*<Stack.Screen
         name="MyAccount"
         component={MyAccount}
         options={{
@@ -41,7 +49,7 @@ const RepairServiceMechStackNavigation = () => {
             elevation: 0,
           },
         }}
-      />
+      />*/}
       <Stack.Screen
         name="ProposalScreen"
         component={ProposalScreen}
