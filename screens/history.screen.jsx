@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { FlatList, View, StyleSheet } from "react-native";
 
 // importing components
 import HistorySummary from "../components/historySummary.component";
 import HistoryCard from "../components/historyCard.component";
+import Hamburger from "../components/hamburger.component";
 
 // importing dummydata
 import dummy from "../data/proposal.dummy.data";
 
 const HistoryScreen = ({ navigation }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => Hamburger(navigation),
+    });
+  }, [navigation]);
+
   const renderItem = ({ item }) => (
     <HistoryCard
       profileImage={item.profileImage}

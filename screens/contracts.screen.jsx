@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
 // importing color
@@ -6,11 +6,18 @@ import Colors from "../colors/default.colors";
 
 // importing components
 import ContractCard from "../components/contractCard.component";
+import Hamburger from "../components/hamburger.component";
 
 // importing dummydata
 import dummy from "../data/proposal.dummy.data";
 
 const Contracts = ({ navigation }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => Hamburger(navigation),
+    });
+  }, [navigation]);
+
   const renderItem = ({ item }) => (
     <ContractCard
       id={item.id}
@@ -20,7 +27,7 @@ const Contracts = ({ navigation }) => {
       fare={item.fare}
       distance={item.distance}
       location={item.location}
-      onSelect={() => navigation.navigate("HistoryScreen")}
+      onSelect={() => {}}
     />
   );
   return (

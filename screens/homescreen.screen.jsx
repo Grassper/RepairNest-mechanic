@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { View, StyleSheet } from "react-native";
 
 // importing colors
@@ -7,11 +7,18 @@ import Colors from "../colors/default.colors";
 // importing components
 import ChooseLocationMap from "../components/chooseLocationMap.component";
 import Dashboard from "../components/dashboard.component";
+import Hamburger from "../components/hamburger.component";
 
-const Homescreen = () => {
+const Homescreen = ({ navigation }) => {
   const customstyles = {
     height: "70%",
   };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => Hamburger(navigation),
+    });
+  }, [navigation]);
 
   return (
     <View style={Styles.container}>

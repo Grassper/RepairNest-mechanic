@@ -5,7 +5,8 @@ import Colors from "../colors/default.colors";
 
 // importing navigators
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // importing screens
 import ProposalScreen from "../screens/proposals.screens";
@@ -18,19 +19,20 @@ import MyAccount from "../screens/myAccount.screen";
 import Homescreen from "../screens/homescreen.screen";
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-const RepairServiceMechStackNavigation = () => {
+const defaultStackNavigationOptions = {
+  headerTintColor: Colors.primaryColor,
+  headerTitleAlign: "center",
+  headerTitleStyle: {
+    fontFamily: "Montserrat_600SemiBold",
+    color: Colors.accentColor,
+  },
+};
+
+const HomeScreenStack = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerTintColor: Colors.primaryColor,
-        headerTitleAlign: "center",
-        headerTitleStyle: {
-          fontFamily: "Montserrat_600SemiBold",
-          color: Colors.accentColor,
-        },
-      }}
-    >
+    <Stack.Navigator screenOptions={defaultStackNavigationOptions}>
       <Stack.Screen
         name="Homescreen"
         component={Homescreen}
@@ -38,18 +40,27 @@ const RepairServiceMechStackNavigation = () => {
           title: "Offline",
         }}
       />
-      {/*<Stack.Screen
-        name="MyAccount"
-        component={MyAccount}
+    </Stack.Navigator>
+  );
+};
+
+const ContractScreenStack = () => {
+  return (
+    <Stack.Navigator screenOptions={defaultStackNavigationOptions}>
+      <Stack.Screen
+        name="Contracts"
+        component={Contracts}
         options={{
-          title: "Account",
-          headerTintColor: Colors.white,
-          headerStyle: {
-            backgroundColor: Colors.primaryColor,
-            elevation: 0,
-          },
+          title: "Contracts",
         }}
-      />*/}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const ProposalScreenStack = () => {
+  return (
+    <Stack.Navigator screenOptions={defaultStackNavigationOptions}>
       <Stack.Screen
         name="ProposalScreen"
         component={ProposalScreen}
@@ -77,13 +88,32 @@ const RepairServiceMechStackNavigation = () => {
           },
         }}
       />
+    </Stack.Navigator>
+  );
+};
+
+const MyAccountScreenStack = () => {
+  return (
+    <Stack.Navigator screenOptions={defaultStackNavigationOptions}>
       <Stack.Screen
-        name="Contracts"
-        component={Contracts}
+        name="MyAccount"
+        component={MyAccount}
         options={{
-          title: "Contracts",
+          title: "Account",
+          headerTintColor: Colors.white,
+          headerStyle: {
+            backgroundColor: Colors.primaryColor,
+            elevation: 0,
+          },
         }}
       />
+    </Stack.Navigator>
+  );
+};
+
+const HistoryScreenStack = () => {
+  return (
+    <Stack.Navigator screenOptions={defaultStackNavigationOptions}>
       <Stack.Screen
         name="HistoryScreen"
         component={HistoryScreen}
@@ -95,10 +125,21 @@ const RepairServiceMechStackNavigation = () => {
   );
 };
 
+const DrawerTab = () => {
+  return (
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen name="Home" component={HomeScreenStack} />
+      <Drawer.Screen name="Proposals" component={ProposalScreenStack} />
+      <Drawer.Screen name="Contracts" component={ContractScreenStack} />
+      <Drawer.Screen name="History" component={HistoryScreenStack} />
+    </Drawer.Navigator>
+  );
+};
+
 const NavContainer = () => {
   return (
     <NavigationContainer>
-      <RepairServiceMechStackNavigation />
+      <DrawerTab />
     </NavigationContainer>
   );
 };

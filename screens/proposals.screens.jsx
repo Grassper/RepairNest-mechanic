@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
 // importing color
@@ -6,11 +6,18 @@ import Colors from "../colors/default.colors";
 
 // importing components
 import ProposalCard from "../components/proposalCard.component";
+import Hamburger from "../components/hamburger.component";
 
 // importing dummydata
 import dummy from "../data/proposal.dummy.data";
 
 const ProposalScreen = ({ navigation }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => Hamburger(navigation),
+    });
+  }, [navigation]);
+
   const renderItem = ({ item }) => (
     <ProposalCard
       id={item.id}
