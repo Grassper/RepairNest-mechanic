@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 
 // importing colors
@@ -6,8 +6,15 @@ import Colors from "../colors/default.colors";
 
 // importing components
 import Divider from "../components/divider.component";
+import Hamburger from "../components/hamburger.component";
 
-const MyAccount = () => {
+const MyAccount = ({ navigation }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => Hamburger(navigation),
+    });
+  }, [navigation]);
+
   const CustomDividerStyle = {
     borderColor: Colors.white,
     marginVertical: 5,

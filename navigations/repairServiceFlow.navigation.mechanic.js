@@ -18,6 +18,11 @@ import HistoryScreen from "../screens/history.screen";
 import MyAccount from "../screens/myAccount.screen";
 import Homescreen from "../screens/homescreen.screen";
 
+//  importing icons
+import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -127,11 +132,81 @@ const HistoryScreenStack = () => {
 
 const DrawerTab = () => {
   return (
-    <Drawer.Navigator initialRouteName="Home">
-      <Drawer.Screen name="Home" component={HomeScreenStack} />
-      <Drawer.Screen name="Proposals" component={ProposalScreenStack} />
-      <Drawer.Screen name="Contracts" component={ContractScreenStack} />
-      <Drawer.Screen name="History" component={HistoryScreenStack} />
+    <Drawer.Navigator
+      initialRouteName="Home"
+      drawerType={"back"}
+      drawerContentOptions={{
+        activeBackgroundColor: Colors.primaryColor,
+        activeTintColor: Colors.white,
+        inactiveTintColor: Colors.accentColor,
+        itemStyle: {
+          paddingVertical: 5,
+          margin: 0,
+        },
+        labelStyle: {
+          fontFamily: "Montserrat_500Medium",
+          fontSize: 16,
+        },
+        style: {
+          backgroundColor: Colors.white,
+        },
+      }}
+    >
+      <Drawer.Screen
+        name="Home"
+        component={HomeScreenStack}
+        options={{
+          // eslint-disable-next-line react/display-name
+          drawerIcon: ({ color, size }) => (
+            <AntDesign name="home" size={size} color={color} />
+          ),
+          headerTitleAlign: "center",
+        }}
+      />
+      <Drawer.Screen
+        name="Proposals"
+        component={ProposalScreenStack}
+        options={{
+          // eslint-disable-next-line react/display-name
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="people-circle-sharp" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Contracts"
+        component={ContractScreenStack}
+        options={{
+          // eslint-disable-next-line react/display-name
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons
+              name="format-list-bulleted"
+              size={size}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="History"
+        component={HistoryScreenStack}
+        options={{
+          // eslint-disable-next-line react/display-name
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="history" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Account"
+        component={MyAccountScreenStack}
+        options={{
+          // eslint-disable-next-line react/display-name
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="account-circle" size={size} color={color} />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 };
