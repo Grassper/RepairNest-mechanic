@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { View, StyleSheet } from "react-native";
 
 // importing colors
@@ -8,8 +8,16 @@ import Colors from "../colors/default.colors";
 import ChooseLocationMap from "../components/chooseLocationMap.component";
 import Dashboard from "../components/dashboard.component";
 import Hamburger from "../components/hamburger.component";
+import ToggleButtonOn from "../components/toggleButtonOn.component";
+import ToggleButtonOff from "../components/toggleButtonOff.component";
 
 const Homescreen = ({ navigation }) => {
+  const [online, setOnline] = useState(true);
+
+  const toggleOnline = () => {
+    console.log("button clicked");
+  };
+
   const customstyles = {
     height: "70%",
   };
@@ -17,6 +25,9 @@ const Homescreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => Hamburger(navigation),
+      headerRight: online
+        ? () => <ToggleButtonOn toggleOnline={toggleOnline} />
+        : () => <ToggleButtonOff toggleOnline={toggleOnline} />,
     });
   }, [navigation]);
 
