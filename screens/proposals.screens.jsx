@@ -7,6 +7,7 @@ import Colors from "../colors/default.colors";
 // importing components
 import ProposalCard from "../components/proposalCard.component";
 import Hamburger from "../components/hamburger.component";
+import NotificationBanner from "../components/notificationBanner.component";
 
 // importing dummydata
 import dummy from "../data/proposal.dummy.data";
@@ -34,9 +35,7 @@ const ProposalScreen = ({ navigation }) => {
   );
   return (
     <View style={Styles.container}>
-      <View style={Styles.notificationContainer}>
-        <Text style={Styles.notificationText}>You have 10 new requests</Text>
-      </View>
+      <NotificationBanner text={"You have 10 new requests"} />
       <FlatList
         data={dummy}
         renderItem={renderItem}
@@ -53,15 +52,5 @@ const Styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.backgroundColor,
     flex: 1,
-  },
-  notificationContainer: {
-    backgroundColor: Colors.notification_banner,
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    width: "100%",
-  },
-  notificationText: {
-    fontFamily: "Montserrat_400Regular",
-    fontSize: 16,
   },
 });

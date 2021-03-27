@@ -1,6 +1,13 @@
 import React, { useLayoutEffect } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 
+// importing redux
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+// importing selectors
+import { selectAccountDetails } from "../redux/accounts/account.selectors.redux";
+
 // importing colors
 import Colors from "../colors/default.colors";
 
@@ -8,7 +15,28 @@ import Colors from "../colors/default.colors";
 import Divider from "../components/divider.component";
 import Hamburger from "../components/hamburger.component";
 
-const MyAccount = ({ navigation }) => {
+const getDate = (timeStamp) => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[timeStamp.getMonth()];
+  let date = timeStamp.getDate();
+  let year = timeStamp.getFullYear();
+  return `${month} ${date}, ${year}`;
+};
+
+const MyAccount = ({ navigation, accountDetails }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => Hamburger(navigation),
@@ -26,44 +54,47 @@ const MyAccount = ({ navigation }) => {
           <Image
             style={Styles.profilePhoto}
             source={{
-              uri:
-                "https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+              uri: accountDetails.profileUrl,
             }}
           />
         </View>
-        <Text style={Styles.profileName}>Martha Banks</Text>
+        <Text style={Styles.profileName}>{accountDetails.profileName}</Text>
       </View>
       <View style={Styles.profileContent}>
         <View style={Styles.Items}>
           <Text style={Styles.Heading}>Username</Text>
-          <Text style={Styles.Content}>Martha Banks</Text>
+          <Text style={Styles.Content}>{accountDetails.profileName}</Text>
         </View>
         <Divider customStyles={CustomDividerStyle} />
         <View style={Styles.Items}>
           <Text style={Styles.Heading}>Phone number</Text>
-          <Text style={Styles.Content}>#ID-12345</Text>
+          <Text style={Styles.Content}>{accountDetails.phoneNumber}</Text>
         </View>
         <Divider customStyles={CustomDividerStyle} />
         <View style={Styles.Items}>
           <Text style={Styles.Heading}>Email</Text>
-          <Text style={Styles.Content}>freeslab88@gmail.com</Text>
+          <Text style={Styles.Content}>{accountDetails.email}</Text>
         </View>
         <Divider customStyles={CustomDividerStyle} />
         <View style={Styles.Items}>
           <Text style={Styles.Heading}>Gender</Text>
-          <Text style={Styles.Content}>Female</Text>
+          <Text style={Styles.Content}>{accountDetails.gender}</Text>
         </View>
         <Divider customStyles={CustomDividerStyle} />
         <View style={Styles.Items}>
           <Text style={Styles.Heading}>Birthday</Text>
-          <Text style={Styles.Content}>April 16, 1988</Text>
+          <Text style={Styles.Content}>{getDate(accountDetails.birthday)}</Text>
         </View>
       </View>
     </View>
   );
 };
 
-export default MyAccount;
+const mapStateToProps = createStructuredSelector({
+  accountDetails: selectAccountDetails,
+});
+
+export default connect(mapStateToProps)(MyAccount);
 
 const Styles = StyleSheet.create({
   Content: {

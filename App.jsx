@@ -12,6 +12,10 @@ import {
 
 import AppLoading from "expo-app-loading";
 
+// importing redux
+import { Provider } from "react-redux";
+import store from "./redux/store.redux";
+
 // importing navigator
 import NavContainer from "./navigations/repairServiceFlow.navigation.mechanic";
 
@@ -32,9 +36,11 @@ const App = () => {
 
   return (
     <SafeAreaProvider>
-      <View style={styles.container}>
-        <NavContainer />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <NavContainer />
+        </View>
+      </Provider>
     </SafeAreaProvider>
   );
 };

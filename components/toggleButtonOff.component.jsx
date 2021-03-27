@@ -3,6 +3,9 @@ import React from "react";
 // importing icons
 import { FontAwesome } from "@expo/vector-icons";
 
+// importing colors
+import Colors from "../colors/default.colors";
+
 // importing header buttons
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "./headerButton.component";
@@ -16,6 +19,7 @@ const ToggleButtonOff = ({ toggleOnline }) => {
         iconSize={30}
         IconComponent={FontAwesome}
         onPress={() => toggleOnline()}
+        color={Colors.primaryColor}
       />
     </HeaderButtons>
   );
