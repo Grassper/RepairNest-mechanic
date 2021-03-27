@@ -12,7 +12,14 @@ import NotificationBanner from "../components/notificationBanner.component";
 // importing dummydata
 import dummy from "../data/proposal.dummy.data";
 
-const ProposalScreen = ({ navigation }) => {
+// importing redux
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+// importing selectors
+import { selectProposalList } from "../redux/proposals/proposals.selectors.redux";
+
+const ProposalScreen = ({ navigation, proposalList }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => Hamburger(navigation),
@@ -22,10 +29,10 @@ const ProposalScreen = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <ProposalCard
       id={item.id}
-      profileImage={item.profileImage}
-      proposalType={item.proposalType}
-      profileName={item.profileName}
+      profileName={item.clientName}
+      profileImage={item.clientImageUrl}
       fare={item.fare}
+      proposalType={item.repairType}
       distance={item.distance}
       location={item.location}
       onSelect={() => {
@@ -35,9 +42,11 @@ const ProposalScreen = ({ navigation }) => {
   );
   return (
     <View style={Styles.container}>
-      <NotificationBanner text={"You have 10 new requests"} />
+      <NotificationBanner
+        text={`You have ${proposalList.length} new requests`}
+      />
       <FlatList
-        data={dummy}
+        data={proposalList}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
@@ -45,7 +54,11 @@ const ProposalScreen = ({ navigation }) => {
   );
 };
 
-export default ProposalScreen;
+const mapStateToProps = createStructuredSelector({
+  proposalList: selectProposalList,
+});
+
+export default connect(mapStateToProps)(ProposalScreen);
 
 const Styles = StyleSheet.create({
   container: {
