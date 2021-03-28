@@ -10,21 +10,34 @@ import LocationDisplay from "../components/locationDisplay.component";
 import Divider from "../components/divider.component";
 import ProblemContainer from "../components/problemContainer.component";
 
-const ProposalDetail = ({ navigation, route }) => {
-  const { item } = route.params;
+// importing redux
+import { connect } from "react-redux";
+
+// importing selectors
+import { selectIndividualProposal } from "../redux/proposals/proposals.selectors.redux";
+
+const ProposalDetail = ({ navigation, proposal }) => {
   return (
     <View style={Styles.container}>
       <View style={Styles.topSection}>
-        <ProfileContainer {...item} />
+        <ProfileContainer
+          profileName={proposal.clientName}
+          profileImage={proposal.clientImageUrl}
+          proposalType={proposal.repairType}
+          fare={proposal.fare}
+          distance={proposal.distance}
+        />
         <View style={Styles.contentContainer}>
-          <LocationDisplay location={item.location} />
+          <LocationDisplay location={proposal.location} />
           <Divider />
-          <ProblemContainer problem={item.problem} />
+          <ProblemContainer problem={proposal.problem} />
         </View>
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("ProposalNavigation");
+          navigation.navigate("ProposalNavigation", {
+            proposalId: proposal.id,
+          });
         }}
         style={Styles.bottomSection}
       >
@@ -34,7 +47,11 @@ const ProposalDetail = ({ navigation, route }) => {
   );
 };
 
-export default ProposalDetail;
+const mapStateToProps = (state, props) => ({
+  proposal: selectIndividualProposal(props.route.params.proposalId)(state),
+});
+
+export default connect(mapStateToProps)(ProposalDetail);
 
 const Styles = StyleSheet.create({
   bottomSection: {

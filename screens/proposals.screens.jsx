@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 
 // importing color
 import Colors from "../colors/default.colors";
@@ -8,9 +8,6 @@ import Colors from "../colors/default.colors";
 import ProposalCard from "../components/proposalCard.component";
 import Hamburger from "../components/hamburger.component";
 import NotificationBanner from "../components/notificationBanner.component";
-
-// importing dummydata
-import dummy from "../data/proposal.dummy.data";
 
 // importing redux
 import { connect } from "react-redux";
@@ -36,7 +33,7 @@ const ProposalScreen = ({ navigation, proposalList }) => {
       distance={item.distance}
       location={item.location}
       onSelect={() => {
-        navigation.navigate("ProposalDetail", { item });
+        navigation.navigate("ProposalDetail", { proposalId: item.id });
       }}
     />
   );
