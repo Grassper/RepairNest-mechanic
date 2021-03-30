@@ -11,7 +11,6 @@ import CustomButton from "../components/customButton.component";
 const CheckingScreen = ({ navigation }) => {
   const [repairId, setRepairId] = useState("#ID-12345");
   const [problem, setProblem] = useState("");
-  const [fare, setFare] = useState("");
   const CustomDividerStyle = {
     borderColor: Colors.white,
     marginVertical: 10,
@@ -37,7 +36,6 @@ const CheckingScreen = ({ navigation }) => {
     const checkingForm = {
       repairId,
       problem,
-      fare,
     };
     navigation.navigate("Contracts");
   };
@@ -58,7 +56,7 @@ const CheckingScreen = ({ navigation }) => {
           <Text style={Styles.itemHeading}>{"Problem".toUpperCase()}</Text>
           <TextInput
             multiline={true}
-            numberOfLines={5}
+            numberOfLines={10}
             onChangeText={(problem) => setProblem(problem)}
             placeholder="Describe Vehicle Condition..."
             value={problem}
@@ -68,20 +66,6 @@ const CheckingScreen = ({ navigation }) => {
           />
         </View>
         <Divider customStyles={CustomDividerStyle} />
-        <Divider customStyles={CustomDividerStyle} />
-        <View style={Styles.receiptItems}>
-          <Text style={Styles.itemHeading}>{"Nominal".toUpperCase()}</Text>
-          <TextInput
-            numberOfLines={1}
-            onChangeText={(fare) => setFare(fare)}
-            placeholder="Range 150 - 200"
-            value={fare}
-            textAlign="left"
-            keyboardType="number-pad"
-            textAlignVertical="top"
-            style={Styles.textBox}
-          />
-        </View>
         <Divider />
         <View style={Styles.buttonContainer}>
           <CustomButton

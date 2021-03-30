@@ -36,7 +36,7 @@ const ProposalDetail = ({ navigation, proposal }) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("ProposalNavigation", {
-            proposalId: proposal.id,
+            proposal,
           });
         }}
         style={Styles.bottomSection}

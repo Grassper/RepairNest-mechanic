@@ -14,7 +14,8 @@ import ProfileContainer from "../components/profileContainer.component";
 import LocationDisplay from "../components/locationDisplay.component";
 import CustomButton from "../components/customButton.component";
 
-const ProposalNavigation = ({ navigation }) => {
+const ProposalNavigation = ({ navigation, route }) => {
+  const { proposal } = route.params;
   const [startNavigation, setStartNavigation] = useState(false);
   const [checking, setChecking] = useState(false);
   const {
@@ -66,14 +67,14 @@ const ProposalNavigation = ({ navigation }) => {
       <ChooseLocationMap customstyles={customstyles} />
       <View>
         <ProfileContainer
-          profileImage={profileImage}
-          profileName={profileName}
-          proposalType={proposalType}
-          fare={fare}
-          distance={distance}
+          profileName={proposal.clientName}
+          profileImage={proposal.clientImageUrl}
+          proposalType={proposal.repairType}
+          fare={proposal.fare}
+          distance={proposal.distance}
         />
         <View style={Styles.locationContainer}>
-          <LocationDisplay location={location} />
+          <LocationDisplay location={proposal.location} />
         </View>
         <View style={Styles.buttonContainer}>
           <CustomButton
